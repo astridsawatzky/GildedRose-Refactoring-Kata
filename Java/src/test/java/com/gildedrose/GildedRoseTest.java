@@ -28,15 +28,10 @@ class GildedRoseTest {
         for (int i = 0, itemsLength = items.length; i < itemsLength; i++) {
             Item item = items[i];
 
-            assertItemsAreEqual(i, item, otherItems[i]);
+            assertEquals(item.toString(), otherItems[i].toString(), "item No: " + i);
+
+
         }
-    }
-
-    private void assertItemsAreEqual(int i, Item item, Item item1) {
-        assertEquals(item.quality, item1.quality, "item No: " + i);
-        assertEquals(item.sellIn, item1.sellIn, "item No: " + i);
-        assertEquals(item.name, item1.name, "item No: " + i);
-
     }
 
 }
