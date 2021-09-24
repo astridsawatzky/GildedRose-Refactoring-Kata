@@ -12,26 +12,17 @@ class GildedRoseTest {
         Item[] itemsAfterOneDay = TestItemsProvider.itemsAfterOneDay();
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        AssertArraysAreEqual(items, itemsAfterOneDay);
+        TestItemsProvider.assertArraysAreEqual( itemsAfterOneDay,items);
 
         Item[] itemsAfter2days = TestItemsProvider.itemsAfter2Days();
         app.updateQuality();
-        AssertArraysAreEqual(items, itemsAfter2days);
+        TestItemsProvider.assertArraysAreEqual(itemsAfter2days,items);
         for (int i = 0; i < 8; i++) {
             app.updateQuality();
         }
         Item[] itemsAfter10days = TestItemsProvider.itemsAfter10Days();
-        AssertArraysAreEqual(items, itemsAfter10days);
+        TestItemsProvider.assertArraysAreEqual(itemsAfter10days,items);
     }
 
-    private void AssertArraysAreEqual(Item[] items, Item[] otherItems) {
-        for (int i = 0, itemsLength = items.length; i < itemsLength; i++) {
-            Item item = items[i];
-
-            assertEquals(item.toString(), otherItems[i].toString(), "item No: " + i);
-
-
-        }
-    }
 
 }

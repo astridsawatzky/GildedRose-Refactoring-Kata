@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TestItemsProvider {
     static Item[] initialItemsTestArray() {
         return new Item[]{
@@ -58,4 +60,15 @@ public static Item[] itemsAfter2Days() {
         // this conjured item does not work properly yet
         //new Item("Conjured Mana Cake", 3, 6)
     };
-}}
+}
+
+    static void assertArraysAreEqual(Item[] items, Item[] otherItems) {
+    for (int i = 0, itemsLength = items.length; i < itemsLength; i++) {
+        Item item = items[i];
+
+        assertEquals(item.toString(), otherItems[i].toString(), "item No: " + i);
+
+
+    }
+}
+}
