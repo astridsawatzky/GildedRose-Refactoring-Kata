@@ -13,23 +13,23 @@ class GildedRose {
                 && !"Backstage passes to a TAFKAL80ETC concert".equals(item.name)) {
                 if (item.quality > 0) {
                     if (!"Sulfuras, Hand of Ragnaros".equals(item.name)) {
-                        item.quality = item.quality - 1;
+                        decreaseQuality(item);
                     }
                 }
             } else {
                 if (item.quality < 50) {
-                    item.quality = item.quality + 1;
+                    increaseQuality(item);
 
                     if ("Backstage passes to a TAFKAL80ETC concert".equals(item.name)) {
                         if (item.sellIn < 11) {
                             if (item.quality < 50) {
-                                item.quality = item.quality + 1;
+                                increaseQuality(item);
                             }
                         }
 
                         if (item.sellIn < 6) {
                             if (item.quality < 50) {
-                                item.quality = item.quality + 1;
+                                increaseQuality(item);
                             }
                         }
                     }
@@ -45,18 +45,30 @@ class GildedRose {
                     if (!"Backstage passes to a TAFKAL80ETC concert".equals(item.name)) {
                         if (item.quality > 0) {
                             if (!"Sulfuras, Hand of Ragnaros".equals(item.name)) {
-                                item.quality = item.quality - 1;
+                                decreaseQuality(item);
                             }
                         }
                     } else {
-                        item.quality = item.quality - item.quality;
+                        wipeOutQuality(item);
                     }
                 } else {
                     if (item.quality < 50) {
-                        item.quality = item.quality + 1;
+                        increaseQuality(item);
                     }
                 }
             }
         }
+    }
+
+    private void wipeOutQuality(Item item) {
+        item.quality = 0;
+    }
+
+    private void decreaseQuality(Item item) {
+        item.quality = item.quality - 1;
+    }
+
+    private void increaseQuality(Item item) {
+        item.quality = item.quality + 1;
     }
 }
