@@ -18,49 +18,54 @@ class GildedRose {
             if ("Aged Brie".equals(item.name)
             ) {
                 decreaseSellIn(item);
-                if (item.sellIn < 0) {
-                    increaseQuality(item, 2);
+                if (item.sellIn >= 0) {
+                    increaseQuality(item, 1);
 
                 } else {
-                    increaseQuality(item, 1);
+                    increaseQuality(item, 2);
 
                 }
             } else if ("Backstage passes to a TAFKAL80ETC concert".equals(item.name)) {
                 decreaseSellIn(item);
-                increaseQuality(item, 1);
 
-
-                if (item.sellIn < 5) {
-                    increaseQuality(item, 1);
-                }
-                if (item.sellIn < 10) {
-                    increaseQuality(item, 1);
-                }
                 if (item.sellIn <0) {
                     wipeOutQuality(item);
+                }else
+
+                if (item.sellIn < 5) {
+                    increaseQuality(item, 3);
+                }else
+                if (item.sellIn < 10) {
+                    increaseQuality(item, 2);
+                } else {
+                    increaseQuality(item, 1);
                 }
+
 
             } else {
                 decreaseSellIn(item);
-                decreaseQuality(item);
-                if (item.sellIn < 0) {
-                    decreaseQuality(item);
+
+                if (item.sellIn >= 0) {
+                    decreaseQuality(item, 1);
+                } else {
+                    decreaseQuality(item, 2);
                 }
+
             }
 
         }
     }
 
-    private void decreaseQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality = item.quality - 1;
-        }
+    private void decreaseQuality(Item item, int by) {
+
+            item.quality = Math.max(item.quality - by,0);
+
     }
 
     private void increaseQuality(Item item, int by) {
-        if (item.quality < 50) {
-            item.quality = item.quality + by;
-        }
+
+            item.quality = Math.min( item.quality + by,50);
+
     }
 
     private void decreaseSellIn(Item item) {
