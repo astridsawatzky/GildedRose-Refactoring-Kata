@@ -3,14 +3,8 @@ package com.gildedrose;
 import java.util.HashMap;
 import java.util.Map;
 
-interface Assessor {
-    void update(Item item);
-}
-
 class GildedRose {
     Item[] items;
-
-
     Map<String, Assessor> assessors = new HashMap<>();
 
     public GildedRose(Item[] items) {
@@ -27,9 +21,9 @@ class GildedRose {
             assessors.getOrDefault(item.name, standard).update(item);
         }
     }
-
-
-
+    interface Assessor {
+        void update(Item item);
+    }
     Assessor agedBrie = item -> {
         item.sellIn--;
         if (item.sellIn >= 0) {
@@ -42,8 +36,6 @@ class GildedRose {
 
         }
     };
-
-
 
     Assessor backstagePasses = item -> {
         item.sellIn--;
@@ -64,6 +56,7 @@ class GildedRose {
 
         }
     };
+
     Assessor standard = item ->
     {
         item.sellIn--;
@@ -85,6 +78,7 @@ class GildedRose {
     private int increasedQuality(Item item, int i) {
         return Math.min(item.quality + i, 50);
     }
+
     private int decreaseQuality(Item item, int i) {
         return Math.max(item.quality - i, 0);
     }
